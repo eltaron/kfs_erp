@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "MyERP Home";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-4">نظام MyERP المتكامل</h1>
+</div>
+
+<div class="row">
+    <!-- كارت موديول HR -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">الشئون الإدارية</h5>
+                <a asp-area="HR" asp-controller="Home" asp-action="Index" class="btn btn-outline-primary w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت موديول الشئون القانونية -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">الشئون القانونية</h5>
+                <a asp-area="Legal" asp-controller="Home" asp-action="Index" class="btn btn-outline-danger w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت المخازن -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">المخازن</h5>
+                <a asp-area="Inventory" asp-controller="Home" asp-action="Index" class="btn btn-outline-warning w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت الحسابات -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">الحسابات</h5>
+                <a asp-area="Accounting" asp-controller="Home" asp-action="Index" class="btn btn-outline-success w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت الحملة -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">الحملة (Logistics)</h5>
+                <a asp-area="Fleet" asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت المشاريع -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">المشاريع والاستراتيجية</h5>
+                <a asp-area="Projects" asp-controller="Home" asp-action="Index" class="btn btn-outline-info w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت الاستدامة -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">مركز الاستدامة</h5>
+                <a asp-area="Education" asp-controller="Home" asp-action="Index" class="btn btn-outline-dark w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- كارت الأدمن -->
+    <div class="col-md-3 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">لوحة التحكم</h5>
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-primary w-100">دخول</a>
+            </div>
+        </div>
+    </div>
+</div>
