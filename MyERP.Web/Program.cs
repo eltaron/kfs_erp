@@ -1,18 +1,41 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using MyERP.Web.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+var builder = WebApplication.CreateBuilder(args);
 
-// في المستقبل سنضيف هنا إعدادات قاعدة البيانات (DbContext)
-// builder.Services.AddDbContext<...>();
+// --- Configure DbContext ---
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+// --- Configure Identity ---
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequireDigit = false; // (اختياري) تسهيل الباسورد أثناء التطوير
+    options.Password.RequiredLength = 6;
+})
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
+
+
+// --- Configure MVC and Hot Reload ---
+var mvcBuilder = builder.Services.AddControllersWithViews();
+#if DEBUG
+mvcBuilder.AddRazorRuntimeCompilation();
+#endif
+
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// 2. Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios.
     app.UseHsts();
 }
 
@@ -21,7 +44,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication(); // Important for Identity
 app.UseAuthorization();
+
 
 // ---------------------------------------------------------
 // 1. تعريف مسار المناطق (Areas) للموديولات (HR, Legal, etc..)
